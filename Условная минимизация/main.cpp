@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <complex>
+//#include <complex>
 #include <cmath>
 
 #define PI 3.14159265
@@ -16,13 +16,6 @@ const double R = 4; //Радиус окружности, внутри котор
 
 struct function {
     static int functionCounter, constrainCounter, gradientCounter, constrainGradientCounter;
-
-    static std::complex<double> func(double x, double y) {
-        //Возвращает значение функции P(x, y) в точке (x, y)
-        std::complex<double> i(0.0, 1.0);
-        functionCounter++; //Счетчик вычислений функций
-        return pow(x, 3) + 3.0 * i * pow(x, 2) * y - (14.0 + 13.0 * i) * pow(x, 2) - 3.0 * x * pow(y, 2) + (26.0 - 28.0 * i) * x * y + (7.0 + 140.0 * i) * x - pow(y, 3) * (0.0 + 1.0 * i) + (14.0 + 13.0 * i) * pow(y, 2) - (140.0 - 7.0 * i) * y + (294.0 - 343.0 * i);
-    }
 
     static double minimizer(double x, double y) {
         //Возвращает значение функции |P(x, y)|^2 в точке (x, y)
@@ -73,7 +66,8 @@ struct function {
     static void printResult(double x, double y, double z){
         fout << "• Минимум в точке: (" << x << ", " << y << "), и он равен: " << z << std::endl;
         fout << "• Приближенные минимайзеры: (" << std::setprecision(4) << x << ", " << y << ", " << z << ")";
-        fout << " (функции были вычислены " << functionCounter << " раз(а), их градиент - " << gradientCounter / 2 << " раз(а))"<< std::endl;
+        fout << " (функция f была вычислена " << functionCounter << " раз(а), её градиент - " << gradientCounter / 2;
+        fout << " раз(а); функция g была вычислена " << constrainCounter << " раз(а), её градиент - " << constrainGradientCounter / 2 << std::endl;
         fout << "• g(x, y): x² + y² - " << pow(R, 2) <<" ≤ 0" << std::endl;
         fout << "• Угол в критерии остановки: 4.24728938°" << std::endl;
         fout << std::setprecision(6);
