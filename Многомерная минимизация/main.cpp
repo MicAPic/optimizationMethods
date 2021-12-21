@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <complex>
+//#include <complex>
 #include <optional>
 #include <vector>
 //Методы оптимизации: многомерная минимизация
@@ -12,13 +12,6 @@ std::ofstream fout("output.txt");
 
 struct function {
     static int counter, gradientCounter;
-
-    static std::complex<double> func(double x, double y) {
-        //Возвращает значение функции P(x, y) в точке (x, y)
-        std::complex<double> i(0.0, 1.0);
-        counter++; //Счетчик вычислений функций
-        return pow(x, 3) + 3.0 * i * pow(x, 2) * y - (14.0 + 13.0 * i) * pow(x, 2) - 3.0 * x * pow(y, 2) + (26.0 - 28.0 * i) * x * y + (7.0 + 140.0 * i) * x - pow(y, 3) * (0.0 + 1.0 * i) + (14.0 + 13.0 * i) * pow(y, 2) - (140.0 - 7.0 * i) * y + (294.0 - 343.0 * i);
-    }
 
     static double minimizer(double x, double y,
                             std::optional<double> x1 = std::nullopt, std::optional<double> y1 = std::nullopt,
@@ -426,7 +419,7 @@ int main() {
     ConstantStepGradient(4, 1, 0.00001, alphaArray);
     double kArray[3] = {10000, 100, 1};
     PredefinedStepGradient(0, 0, 0.00001, kArray);
-//    FastestGradient(6, 0.1, 0.00001, -1, 8);
+    FastestGradient(6, 0.1, 0.00001, -1, 8);
     fout.close();
     return 0;
 }
