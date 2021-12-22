@@ -67,7 +67,8 @@ struct function {
         fout << "• Минимум в точке: (" << x << ", " << y << "), и он равен: " << z << std::endl;
         fout << "• Приближенные минимайзеры: (" << std::setprecision(4) << x << ", " << y << ", " << z << ")";
         fout << " (функция f была вычислена " << functionCounter << " раз(а), её градиент - " << gradientCounter / 2;
-        fout << " раз(а); функция g была вычислена " << constrainCounter << " раз(а), её градиент - " << constrainGradientCounter / 2 << std::endl;
+        fout << " раз(а); функция g была вычислена " << constrainCounter << " раз(а), её градиент - " << constrainGradientCounter / 2;
+        fout << " раз(а))" << std::endl;
         fout << "• g(x, y): x² + y² - " << pow(R, 2) <<" ≤ 0" << std::endl;
         fout << "• Угол в критерии остановки: 4.24728938°" << std::endl;
         fout << std::setprecision(6);
@@ -77,8 +78,8 @@ int function::functionCounter = 0, function::constrainCounter = 0,
     function::gradientCounter = 0, function::constrainGradientCounter = 0;
 
 void ConstrainedMinimization(double x, double y, double epsilon, double alpha) {
-    //Условная минимизация
-    fout << "УСЛОВНАЯ МИНИМИЗАЦИЯ" << std::endl;
+    //Метод условного градиента
+    fout << "МЕТОД УСЛОВНОГО ГРАДИЕНТА" << std::endl;
     fout << std::setprecision(6);
     int i = 0;
     fout << "┌────────┬──────────────┬──────────────┬──────────────┬───────────────────────────────┬──────────────┬───────────────────────────────┬──────────────┬───────────────────────────────┬──────────────┐\n"
